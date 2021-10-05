@@ -9,6 +9,8 @@ Things you may want to cover:
 
 * Version control: GIT 
 
+* Version control: last commit 2021-10-05
+
 * System dependencies
 
 * Configuration
