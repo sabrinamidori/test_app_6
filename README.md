@@ -26,3 +26,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+ git remote add origin https://github.com/sabrina-fsl/test_app_6.git 
+ git remote add origin https://github.com/sabrinamidori/test_app_6.git
+ git remote add origin git@github.com:sabrinamidori/test_app_6.git
+ git remote -v
+ git branch -M main 
+ git push -u origin main
