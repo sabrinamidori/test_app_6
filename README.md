@@ -7,9 +7,9 @@ Things you may want to cover:
 
 * Ruby version ruby-3.0.0
 
-* Version control: GIT 
+* Version control:git sabrinamidori@gmail.com  
 
-* Version control: last commit 2021-10-05
+* Deploy to production using Heroku (optional) - production hosting service
 
 * System dependencies
 
@@ -24,6 +24,9 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+
+# production 
+command: bundle install --without production
 
 * ...
  git remote add origin https://github.com/sabrina-fsl/test_app_6.git 
