@@ -9,7 +9,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1 or /articles/1.json
   def show
     #byebug
-    @article = Article.find(params[:id])
+    # before_action calls set_article method that loads the @article attribute
+    #@article = Article.find(params[:id])
   end
 
   # GET /articles/new
@@ -19,43 +20,56 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    #@article = Article.find(params[:id])
   end
 
   # POST /articles or /articles.json
   def create
-    @article = Article.new(article_params)
+    #byebug
+    @article = Article.new(article_params) #calls method article_params
+    #@article = Article.new(params.require(:article).permit(:title, :description))
 
-    respond_to do |format|
+    #respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: "Article was successfully created." }
-        format.json { render :show, status: :created, location: @article }
+       # format.html { redirect_to @article, notice: "Article was successfully created." }
+       # format.json { render :show, status: :created, location: @article }
+       flash[:notice] = "Article was successfully created."
+       redirect_to @article
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        #format.html { render :new, status: :unprocessable_entity }
+        #format.json { render json: @article.errors, status: :unprocessable_entity }
+        render 'new'
       end
-    end
+    #end
   end
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to @article, notice: "Article was successfully updated." }
-        format.json { render :show, status: :ok, location: @article }
+    #respond_to do |format| 
+     # @article = Article.find(params[:id])
+      if @article.update(article_params) #calls method article_params
+      #if @article.update(params.require(:article).permit(:title, :description))
+        #format.html { redirect_to @article, notice: "Article was successfully updated." }
+        #format.json { render :show, status: :ok, location: @article }
+        flash[:notice] = "Article was successfully updated."
+        redirect_to @article
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        #format.html { render :edit, status: :unprocessable_entity }
+        #format.json { render json: @article.errors, status: :unprocessable_entity }
+        render 'edit'
       end
-    end
+    #end
   end
 
   # DELETE /articles/1 or /articles/1.json
   def destroy
+   # @article = Article.find(params[:id])
     @article.destroy
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to articles_path
+    #respond_to do |format|
+      #format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
+      #format.json { head :no_content }
+   # end
   end
 
   private
@@ -66,6 +80,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :string, :description)
+      params.require(:article).permit(:title, :description)
     end
 end
