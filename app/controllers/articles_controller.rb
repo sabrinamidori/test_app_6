@@ -20,14 +20,13 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    #@article = Article.find(params[:id])
   end
 
   # POST /articles or /articles.json
   def create
     #byebug
     @article = Article.new(article_params) #calls method article_params
-    #@article = Article.new(params.require(:article).permit(:title, :description))
+    @article.user = User.first
 
     #respond_to do |format|
       if @article.save
