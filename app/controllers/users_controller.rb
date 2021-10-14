@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     def update
         if @user.update(user_params) #calls method user_params
             flash[:notice] = "Account successfully updated."
-            redirect_to root_path
+            redirect_to @user
         else
             render 'edit'
         end

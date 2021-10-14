@@ -43,6 +43,16 @@ body {
   height: 100%;
 }
 
+
+a {
+  color: blue; }
+
+a:visited {
+  color: #666; }
+
+a:hover {
+  color: rgb(18, 7, 119);
+ }
 #page-content {
   flex: 1 0 auto;
   background-color: lightgrey;
