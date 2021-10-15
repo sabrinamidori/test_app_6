@@ -3,7 +3,16 @@
     <div class="text-right col-10 mt-2">
       <%= link_to 'New Article', new_article_path, class: "bi bi-plus-square" %>
     </div>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @articles %>
+    </div>
+    <%= will_paginate @articles, :container => false %>
+  </div>
     <%= render 'article', articles: @articles %>
+  <div class="flickr_pagination mb-4">
+    <%= will_paginate @articles, :container => false %>
+  </div>
   </div>
 
 <br>
