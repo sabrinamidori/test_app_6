@@ -16,6 +16,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params) 
     
         if @user.save
+            session[:user_id] =  @user.id
             flash[:notice] = "Wellcome to Alpha Blog #{@user.username}, you have successfully signed up."
             redirect_to articles_path
         else

@@ -28,7 +28,8 @@ class ArticlesController < ApplicationController
   def create
     #byebug
     @article = Article.new(article_params) #calls method article_params
-    @article.user = User.first
+    #@article.user = User.find(session[:user_id])
+    @article.user = current_user
 
     #respond_to do |format|
       if @article.save
