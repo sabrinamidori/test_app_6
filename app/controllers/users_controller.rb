@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: %i[ show edit update destroy ]
+    before_action :require_user, only: [ :edit, :update, :destroy ]
+    before_action :require_same_user, only: [ :edit, :update, :destroy ]
     def index 
         @users = User.paginate(page: params[:page])
     end
@@ -9,6 +11,7 @@ class UsersController < ApplicationController
     def edit
     end
     def show
+        @articles = @user.articles.paginate(page: params[:page], per_page: 5)
       #byebug
     end
     def create
@@ -32,6 +35,13 @@ class UsersController < ApplicationController
             render 'edit'
         end
     end
+    def destroy
+        @user.destroy
+        session[:user_id] = nil  
+        flash[:notice] = "Account and all associated articles successfully deleted."
+        redirect_to articles_path
+
+    end
     private
         # Use callbacks to share common setup or constraints between actions.
         def set_user
@@ -43,4 +53,11 @@ class UsersController < ApplicationController
         def user_params
             params.require(:user).permit(:username, :email, :password)
         end
-end
+        def require_same_user
+          if current_user != @user
+            flash[:alert] = "You can only edit your acount."
+            redirect_to @user
+          end
+        end 
+
+    end

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     self.per_page = 5
     before_save { self.email = email.downcase }
-    has_many :articles #, class_name: "Article", foreign_key: "user_id"
+    has_many :articles, dependent: :destroy #, class_name: "Article", foreign_key: "user_id"
     validates :username, presence: true, 
                 uniqueness: { case_sensitive: false }, 
                 length: { minimum: 3, maximum: 25 }
